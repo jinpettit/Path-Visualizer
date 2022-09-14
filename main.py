@@ -1,3 +1,4 @@
+import heapq
 import pygame
 import pygame_gui
 from queue import PriorityQueue
@@ -101,7 +102,6 @@ def h(p1, p2):
 def reconstruct_path(came_from, current, draw):
 	while current in came_from:
 		current = came_from[current]
-		print(current)
 		current.make_path()
 		draw()
 
@@ -219,7 +219,6 @@ def solve_bfs(draw, start, end):
 
 
 		return False
-
 				
 def make_grid(rows, width):
 	grid = []
@@ -263,8 +262,6 @@ def get_clicked_pos(pos, rows, width):
 def within_bounds(rows):
 	pos = pygame.mouse.get_pos()
 	row, col = get_clicked_pos(pos, rows, WINDOW_HEIGHT)
-	print(row)
-	print(col)
 	if row > rows - 1:
 		return False
 	elif col > rows - 1:
@@ -358,16 +355,6 @@ def main():
 				elif spot == end:
 					end = None
 
-			#if event.type == pygame.KEYDOWN:
-				#if event.key == pygame.K_SPACE and start and end:
-					#for row in grid:
-						#for spot in row:
-							#spot.update_neighbors(grid)
-
-					#solve_bfs(lambda: draw(WIN, grid, ROWS, WINDOW_HEIGHT), start, end)
-					#solve_dfs(lambda: draw(WIN, grid, ROWS, WINDOW_HEIGHT), start, end)
-					#algorithm(lambda: draw(WIN, grid, ROWS, WINDOW_HEIGHT), grid, start, end)
-
 			if event.type == pygame.USEREVENT:
 				if event.user_type == pygame_gui.UI_BUTTON_PRESSED and start and end:
 					for row in grid:
@@ -381,6 +368,7 @@ def main():
 							solve_bfs(lambda: draw(WIN, grid, ROWS, WINDOW_HEIGHT), start, end)
 						elif algorithm == "A*":
 							algorithm(lambda: draw(WIN, grid, ROWS, WINDOW_HEIGHT), grid, start, end)
+
 
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_c:

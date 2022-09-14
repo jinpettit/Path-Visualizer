@@ -30,5 +30,5 @@ GREY = (128, 128, 128)
 TURQUOISE = (64, 224, 208)
 DARK_GREY = (33, 40, 45)
 
-SOL_ALGORITHMS = ["DFS", "BFS", "A*", "Dijkstra's"]
+SOL_ALGORITHMS = ["DFS", "BFS", "A*"]
 
